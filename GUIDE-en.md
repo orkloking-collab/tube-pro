@@ -9,11 +9,49 @@ and get paid without losing your domain.
 
 | File | What it is | Upload? |
 |---|---|---|
-| `index.html` | **Main landing page (English)** — Facebook traffic lands here | ✅ Yes (homepage) |
+| `index.html` | **Main landing page (English)** — Tube Pro, design v2 | ✅ Yes (homepage) |
 | `zh.html` | **Chinese version** of the same page, with a language switcher | ✅ Yes |
-| `redirect.html` | Old direct-redirect version (kept as backup only) | ❌ Don't use |
+| `images/` | Logo + dynamic background + 3 posters (all 5 files) | ✅ Yes (keep the folder name) |
+| `redirect.html` | Old direct-redirect version (backup only) | ❌ Don't use |
 | `index.html 1.txt` | The original file you were given (broken, unmodified) | ❌ Reference only |
 | `GUIDE-en.md` | This guide | ❌ Reference only |
+
+**Upload all of `index.html`, `zh.html` and the whole `images/` folder** — the pages load the
+images with relative paths (`images/hero-bg.jpg`), so the folder must sit next to the HTML files.
+
+---
+
+## 1b. Design v2 — what's on the page
+
+- **Dynamic background:** cinematic dark-red artwork that slowly pans and zooms (Ken Burns),
+  with a light sweep and floating red particles.
+- **3 floating 3D poster cards** drifting at different depths and speeds — decorative only,
+  they never block taps.
+- **Tube Pro branding:** custom logo (`images/logo.png`, also used as the favicon) + gradient wordmark.
+- **Two main buttons**, SVG icons instead of emoji:
+  - blue **Join Telegram Channel** (primary — the conversion goal)
+  - glass **Browse Free Courses** → your blogspot site
+- **One 18+ sponsor button** at the bottom with an `AD` chip and an honest note.
+- `prefers-reduced-motion` is respected: users who disable animations get a static page.
+
+### The 18+ button — and the `?fb=1` switch
+
+The 18+ button is labelled honestly: it carries an `AD` chip and the line
+"Sponsored advertising · Adults 18 and over only". Nothing on the page claims the destination
+is something it isn't — that's what keeps it out of "misleading ad placement" territory.
+
+**Facebook traffic:** an "18+" label on the page can make Meta's crawler classify the whole
+domain as adult content, which hits reach hard. So the page supports a switch:
+
+| Link you post | What visitors see | Use for |
+|---|---|---|
+| `https://yourdomain.com/` | full page **with** the 18+ button | Telegram, TikTok, WhatsApp, direct traffic |
+| `https://yourdomain.com/?fb=1` | same page, 18+ block hidden | **Facebook posts** |
+
+This is a normal campaign parameter — the crawler and your Facebook visitors see the *exact same*
+version (no cloaking: nothing is detected or served differently to crawlers). The 18+ button
+still earns on every other traffic source. Switch it off entirely if you prefer — just delete
+the `adzone` section, or leave `?fb=1` on all links you post publicly.
 
 **Your links (already wired into both pages):**
 
@@ -64,22 +102,22 @@ and the container `div` keeps the **exact id** from the script URL.
 
 ### Sponsor link — what we did and what we deliberately skipped
 
-The sponsor link is now a **small strip at the bottom of the page** (EN + ZH), with:
-- an `AD` badge (honest disclosure — required by every ad network's terms),
-- a short true line: "Sponsored link — a free way to support this site",
-- a subtle nudge animation on the arrow for attention (legal, and it works).
+The sponsor link is the **18+ button at the bottom of the page** (EN + ZH), with an `AD` chip,
+a pulsing glow and an honest note line. See section 1b for the `?fb=1` switch.
 
 **Two things we deliberately did NOT do, and why:**
 
-1. **No fake "18+" label.** Your site has no 18+ content, so that label would be a lie you're
-   telling your own visitors. Under every network's terms this is "misleading ad placement",
-   and it's the justification they use to **void your balance** at payout time. It also brings
-   the wrong audience — people hunting adult content don't want English courses, so they bounce,
-   and Facebook reads bounces as a quality signal and cuts your reach.
+1. **No fake label.** The button says 18+ because the sponsored destination is adult-oriented
+   — that statement is true, so it's allowed. The earlier idea of putting "18+" on a course
+   link with no adult content would have been a lie, and networks void balances for
+   "misleading ad placement". Bait wording also attracts the wrong audience: people hunting
+   adult content don't want courses, they bounce, and Facebook reads bounces as a quality
+   signal and cuts your reach.
 2. **No hiding the link from crawlers.** Hiding ad links from bots is *cloaking*. Modern
    detection isn't one bot — it's crawler fingerprints + click-pattern scoring + manual review.
    When it lands, you lose the ad account (usually with the balance) **and** the domain goes on
-   Facebook's list, which is effectively permanent.
+   Facebook's list, which is effectively permanent. The `?fb=1` trick above is *not* cloaking:
+   it's the same page for crawler and visitor.
 
 **The practical part people miss:** your 4 ad tags (popunders, social bar, banner) are paid per
 **impression**, not per click. Tricking visitors into extra clicks on "18+" bait does not raise
