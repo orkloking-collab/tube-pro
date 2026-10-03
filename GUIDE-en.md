@@ -11,13 +11,13 @@ and get paid without losing your domain.
 |---|---|---|
 | `index.html` | **Main landing page (English)** — Tube Pro, design v2 | ✅ Yes (homepage) |
 | `zh.html` | **Chinese version** of the same page, with a language switcher | ✅ Yes |
-| `images/` | Logo + dynamic background + 3 posters (all 5 files) | ✅ Yes (keep the folder name) |
+| `images/` | Logo + hero background + silk layer + 3 posters (all 6 files) | ✅ Yes (keep the folder name) |
 | `redirect.html` | Old direct-redirect version (backup only) | ❌ Don't use |
 | `index.html 1.txt` | The original file you were given (broken, unmodified) | ❌ Reference only |
 | `GUIDE-en.md` | This guide | ❌ Reference only |
 
 **Upload all of `index.html`, `zh.html` and the whole `images/` folder** — the pages load the
-images with relative paths (`images/hero-bg.jpg`), so the folder must sit next to the HTML files.
+images with relative paths (`images/glam-hero.jpg`), so the folder must sit next to the HTML files.
 
 ---
 
