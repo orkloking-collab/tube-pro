@@ -14,6 +14,9 @@
          TELEGRAM = https://t.me/duzshopi          （频道：Tube Pro）
          AD_LINK  = 你的 CPM / 智能链接
        英文版页面：index.html（两个文件都要上传）
+
+       已安装广告：2 个 popunder 标签（head 中）+ 1 个 social bar/原生标签 +
+       1 个 728x90 横幅。详见下方 AD SLOT 注释。
        ═══════════════════════════════════════════════════════════════ -->
 
   <!-- ⚠️ Facebook 爬虫会读取这些标签生成链接预览，请与帖子文案保持一致 -->
@@ -86,10 +89,15 @@
     .steps ol { margin: 0; padding-left: 20px; color: #adbac7; font-size: 14px; }
     .steps li { margin: 4px 0; }
 
-    .adslot {
-      min-height: 62px; margin: 14px 0; display: grid; place-items: center;
-      color: #30363d; font-size: 12px; border: 1px dashed #21262d; border-radius: 10px;
+    /* 广告容器 — 网络会在这里注入 iframe。
+       728x90 横幅比本页 640px 的栏宽更宽，因此 .ad-wide 允许在手机上横向滚动，
+       而不会破坏页面布局。 */
+    .ad-wide {
+      margin: 16px 0; display: flex; justify-content: center;
+      overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
     }
+    .ad-wide > * { flex: 0 0 auto; }
+    .ad-native { margin: 16px 0; text-align: center; }
 
     .desc { color: #adbac7; font-size: 14.5px; margin-top: 16px; }
     .desc h2 { font-size: 16px; color: #e6edf3; margin: 16px 0 6px; }
@@ -99,7 +107,13 @@
     footer { color: #6e7681; font-size: 12px; text-align: center; padding: 18px 0 34px; border-top: 1px solid #21262d; margin-top: 20px; }
   </style>
 
-  <!-- 广告位 1：在此粘贴 Popunder / Social Bar / 插页式广告代码 -->
+  <!-- ═══════════ 广告位 1 — Popunder / OnClick 标签 ═══════════
+       两个标签均按后台原样加载。
+       注意：浏览器每个页面只允许一个自动弹窗，因此第二个标签大多处于闲置状态。
+       如果收益没有变化，请在此保留一个，把另一个移到你的 blogspot 网站上，
+       不要在同一页面上重复叠加。 -->
+  <script src="https://pl31640723.profitableratecpmnetwork.com/5f/3d/b9/5f3db97336f2761b8ec5e1db50593aa0.js"></script>
+  <script src="https://pl31640724.profitableratecpmnetwork.com/16/11/f9/1611f949ca7045a0ec2a0ad56d36ede1.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -155,8 +169,27 @@
     </ol>
   </div>
 
-  <!-- 广告位 2：在此粘贴横幅 / 原生广告代码 -->
-  <div class="adslot">横幅广告位</div>
+  <!-- ═══════════ 广告位 2 — Social Bar / 插页式推送 ═══════════
+       脚本标签必须放在它的 container div 之前 —— 容器 id 与脚本 URL 中的
+       那一串必须完全一致，切勿改名。 -->
+  <script async="async" data-cfasync="false" src="https://pl31640725.profitableratecpmnetwork.com/eb6b00d57bb81460f782acfe023302c1/invoke.js"></script>
+  <div class="ad-native" id="container-eb6b00d57bb81460f782acfe023302c1"></div>
+
+  <!-- ═══════════ 广告位 3 — 728x90 横幅 ═══════════
+       atOptions 必须紧贴在它自己的 invoke.js 上方，否则横幅无法知道要渲染哪条广告
+       （该变量是全局的）。 -->
+  <div class="ad-wide">
+    <script>
+      atOptions = {
+        'key' : 'bcecb97217d1151e7a4a2b787376b344',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highrevenueformat.com/bcecb97217d1151e7a4a2b787376b344/invoke.js"></script>
+  </div>
 
   <!-- Telegram 嵌入：取消下方注释并填入帖子编号（例如 duzshopi/3）。
        Tube Pro 频道是公开的，所以嵌入可用。 -->

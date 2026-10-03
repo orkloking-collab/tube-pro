@@ -14,6 +14,9 @@
          TELEGRAM = https://t.me/duzshopi        (channel: Tube Pro)
          AD_LINK  = your CPM / smartlink
        Chinese version of this page: zh.html  (upload both files)
+
+       Ads installed: 2 popunder tags (head) + 1 social-bar/native tag +
+       1x 728x90 banner. See the AD SLOT comments below.
        ═══════════════════════════════════════════════════════════════ -->
 
   <!-- ⚠️ Facebook's crawler reads these tags to build the link preview.
@@ -86,10 +89,15 @@
     .steps ol { margin: 0; padding-left: 20px; color: #adbac7; font-size: 14px; }
     .steps li { margin: 4px 0; }
 
-    .adslot {
-      min-height: 62px; margin: 14px 0; display: grid; place-items: center;
-      color: #30363d; font-size: 12px; border: 1px dashed #21262d; border-radius: 10px;
+    /* Ad containers — the network injects its iframe inside these.
+       The 728x90 banner is wider than this 640px column, so .ad-wide lets it
+       scroll sideways on phones instead of breaking the layout. */
+    .ad-wide {
+      margin: 16px 0; display: flex; justify-content: center;
+      overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
     }
+    .ad-wide > * { flex: 0 0 auto; }
+    .ad-native { margin: 16px 0; text-align: center; }
 
     .desc { color: #adbac7; font-size: 14.5px; margin-top: 16px; }
     .desc h2 { font-size: 16px; color: #e6edf3; margin: 16px 0 6px; }
@@ -99,7 +107,13 @@
     footer { color: #6e7681; font-size: 12px; text-align: center; padding: 18px 0 34px; border-top: 1px solid #21262d; margin-top: 20px; }
   </style>
 
-  <!-- AD SLOT 1 : paste your Popunder / Social Bar / In-Page Push code here -->
+  <!-- ═══════════ AD SLOT 1 — Popunder / OnClick tags ═══════════
+       Both tags are loaded exactly as your dashboard gave them.
+       Heads-up: a browser allows only ONE automatic popup per page, so the second
+       tag mostly stays idle. If earnings don't move, keep one here and move the
+       other to your blogspot site instead of stacking both on the same page. -->
+  <script src="https://pl31640723.profitableratecpmnetwork.com/5f/3d/b9/5f3db97336f2761b8ec5e1db50593aa0.js"></script>
+  <script src="https://pl31640724.profitableratecpmnetwork.com/16/11/f9/1611f949ca7045a0ec2a0ad56d36ede1.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -156,8 +170,27 @@
     </ol>
   </div>
 
-  <!-- AD SLOT 2 : paste your Banner / Native Banner code here -->
-  <div class="adslot">Banner ad space</div>
+  <!-- ═══════════ AD SLOT 2 — Social Bar / In-Page Push ═══════════
+       Keep the script tag BEFORE its container div — the container id must match
+       the one inside the script URL exactly. Do not rename it. -->
+  <script async="async" data-cfasync="false" src="https://pl31640725.profitableratecpmnetwork.com/eb6b00d57bb81460f782acfe023302c1/invoke.js"></script>
+  <div class="ad-native" id="container-eb6b00d57bb81460f782acfe023302c1"></div>
+
+  <!-- ═══════════ AD SLOT 3 — 728x90 banner ═══════════
+       atOptions must stay immediately ABOVE its own invoke.js, otherwise the
+       banner can't tell which ad to render (the variable is global). -->
+  <div class="ad-wide">
+    <script>
+      atOptions = {
+        'key' : 'bcecb97217d1151e7a4a2b787376b344',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+    <script src="https://www.highrevenueformat.com/bcecb97217d1151e7a4a2b787376b344/invoke.js"></script>
+  </div>
 
   <!-- Telegram embed: uncomment the snippet below and paste your post number
        (e.g. duzshopi/3). Works because the Tube Pro channel is public. -->

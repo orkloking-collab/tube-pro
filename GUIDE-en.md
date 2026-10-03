@@ -23,17 +23,53 @@ and get paid without losing your domain.
 
 ---
 
-## 2. Before you upload — 3 small edits
+## 2. Before you upload — 2 small edits
 
 1. **Replace the placeholder domain** in `og:url` (both files) with your real domain.
 2. **Keep `og:title` / `og:description` matching your Facebook post text** — the crawler reads
    these tags to build the link preview, and a mismatch is a spam signal.
-3. **Paste your ad network code** into the two marked slots:
-   - `AD SLOT 1` — Popunder / Social Bar / In-Page Push (in `<head>`)
-   - `AD SLOT 2` — Banner / Native (in the middle of the page)
+3. The ad codes are already installed (see section 2b below) — nothing to paste.
 
 Then test with Facebook's **Sharing Debugger**: `https://developers.facebook.com/tools/debug/`
 → paste your URL → **Scrape Again**. You should see your thumbnail, title and description.
+
+---
+
+## 2b. Ads installed (all 4 tags, verified)
+
+| # | Tag | Placed in | Type |
+|---|---|---|---|
+| 1 | `pl31640723…/5f3db973…js` | `<head>` | Popunder / OnClick |
+| 2 | `pl31640724…/1611f949…js` | `<head>` | Popunder / OnClick |
+| 3 | `pl31640725…/invoke.js` + `container-eb6b00d5…` div | body (after "How to get started") | Social Bar / In-Page Push |
+| 4 | `atOptions` key `bcecb972…` + `highrevenueformat.com` | body (below slot 2) | 728×90 banner |
+
+Checked before installing: HTML stays balanced, no escaped `&lt;` leftovers, all inline
+JavaScript passes a syntax check, `atOptions` sits **immediately above** its own `invoke.js`,
+and the container `div` keeps the **exact id** from the script URL.
+
+### 3 things that will affect your earnings
+
+1. **Two popunder tags on one page — only one popup fires.** Browsers allow a single automatic
+   popup per page load, so tag #2 mostly sits idle (and wastes a request). If your stats don't
+   move after a few days, keep one tag here and put the other on your blogspot course site
+   (or on a second landing page). Don't stack popunders on top of each other.
+2. **The 728×90 banner is wider than this layout (640px column).** It's placed in a
+   `.ad-wide` wrapper that lets phones scroll it sideways instead of breaking the page.
+   For a clean look on mobile, order a **320×50** or **300×250** banner tag from your network
+   and drop it in the same spot. On desktop it fits fine.
+3. **AD SLOT 3's `atOptions` is a global variable.** If you ever add a second banner,
+   it needs its own `atOptions` block placed immediately before its own `invoke.js` —
+   otherwise both slots render the same ad.
+
+### Testing ads without getting flagged
+
+- Never click your own ads. Use incognito / another device / mobile data, and check
+  **impressions and earnings in your dashboard**, not on your screen.
+- If a "verify you are a human" screen keeps appearing while you test, that's the network's
+  anti-fraud reacting to your own repeated visits — normal, and it stops once you stop.
+- Popunders don't fire reliably in incognito or with strict popup-block settings on, so a
+  "no popup" test result doesn't always mean the tag is broken.
 
 ---
 
