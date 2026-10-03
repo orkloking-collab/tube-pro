@@ -30,7 +30,7 @@
   <meta property="og:locale:alternate" content="en_US">
 
   <link rel="icon" type="image/png" href="images/logo.png">
-  <link rel="preload" as="image" href="images/hero-bg.jpg">
+  <link rel="preload" as="image" href="images/glam-hero.jpg">
   <link rel="alternate" hreflang="en" href="index.html">
   <link rel="alternate" hreflang="zh-Hans" href="zh.html">
 
@@ -46,7 +46,7 @@
     /* ── 动态背景 ─────────────────────────────────────────────── */
     .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
     .bg img {
-      width: 100%; height: 100%; object-fit: cover; opacity: .72;
+      width: 100%; height: 100%; object-fit: cover; object-position: 62% 42%; opacity: .78;
       transform: scale(1.1); animation: kenburns 30s ease-in-out infinite alternate;
     }
     @keyframes kenburns {
@@ -88,6 +88,22 @@
     }
     @media (min-width: 820px) {
       .p1 { left: 3vw; }  .p2 { right: 3vw; }  .p3 { left: 22vw; opacity: .28; }
+    }
+    @media (max-width: 560px) {
+      .p3 { display: none; }          /* keep phones clean */
+      .silk img { width: 88vmin; right: -22vw; opacity: .26; }
+    }
+
+    /* ── flowing red silk layer ─────────────────────────────────── */
+    .silk { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+    .silk img {
+      position: absolute; top: -12vh; right: -14vw; width: 74vmin; max-width: 520px; height: auto;
+      opacity: .34; filter: saturate(1.06);
+      animation: silkdrift 24s ease-in-out infinite;
+    }
+    @keyframes silkdrift {
+      0%,100% { transform: translate3d(0, 0, 0) rotate(7deg) scale(1);     opacity: .30; }
+      50%     { transform: translate3d(-5vw, 6vh, 0) rotate(2deg) scale(1.07); opacity: .46; }
     }
 
     /* ── 光线扫过 + 粒子 ──────────────────────────────────────── */
@@ -230,7 +246,8 @@
 <body>
 
   <!-- 动态背景层 -->
-  <div class="bg"><img src="images/hero-bg.jpg" alt=""></div>
+  <div class="bg"><img src="images/glam-hero.jpg" alt=""></div>
+  <div class="silk" aria-hidden="true"><img src="images/silk-hero.jpg" alt=""></div>
   <div class="sweep"></div>
   <div class="sparks">
     <span class="spark"></span><span class="spark"></span><span class="spark"></span>

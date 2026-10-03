@@ -23,10 +23,17 @@ images with relative paths (`images/hero-bg.jpg`), so the folder must sit next t
 
 ## 1b. Design v2 — what's on the page
 
-- **Dynamic background:** cinematic dark-red artwork that slowly pans and zooms (Ken Burns),
-  with a light sweep and floating red particles.
-- **3 floating 3D poster cards** drifting at different depths and speeds — decorative only,
-  they never block taps.
+- **Dynamic background:** a cinematic red-gown hero shot (`images/glam-hero.jpg`) that slowly
+  pans and zooms (Ken Burns), plus a **flowing red-silk layer** (`images/silk-hero.jpg`) that
+  drifts independently, a light sweep and floating red particles.
+- **3 floating 3D poster cards** (film reel, cinema, neon play) drifting at different depths
+  and speeds — decorative only, they never block taps. On phones under 560px the third card
+  and most of the silk are hidden to keep the page light and fast.
+- **Tasteful glamour, not explicit content.** The hero image is a fully-clothed, back-turned
+  silhouette — high-fashion mood. That reads as "premium streaming service" to visitors and
+  to Facebook's crawler, while sexualised imagery gets the domain classified as adult content
+  (which caps reach) and violates most ad networks' content policies (which freezes payouts).
+  Attractive + safe beats explicit + banned.
 - **Tube Pro branding:** custom logo (`images/logo.png`, also used as the favicon) + gradient wordmark.
 - **Two main buttons**, SVG icons instead of emoji:
   - blue **Join Telegram Channel** (primary — the conversion goal)
