@@ -81,8 +81,28 @@
     .btn:active { transform: scale(.985); }
     .btn-red   { background: #e50914; }
     .btn-blue  { background: #229ED9; }
-    .btn-ghost { background: #161b22; border: 1px solid #30363d; color: #adbac7; font-size: 14.5px; font-weight: 600; }
     .ico { font-size: 19px; line-height: 1; }
+
+    /* 页面底部的小型赞助条 — 如实标注 "AD"。
+       有意保持可见：向爬虫隐藏广告链接，正是广告网络冻结余额、
+       Facebook 拉黑域名的原因。 */
+    .sponsor-strip {
+      display: flex; align-items: center; gap: 10px;
+      margin: 18px 0 6px; padding: 11px 14px;
+      background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+      text-decoration: none; color: #adbac7; font-size: 13.5px;
+    }
+    .sponsor-strip:active { background: #21262d; }
+    .ad-badge {
+      font-size: 10.5px; font-weight: 700; letter-spacing: .06em;
+      background: #30363d; color: #adbac7; border-radius: 4px; padding: 2px 6px;
+    }
+    .sponsor-text { flex: 1; }
+    .ad-arrow {
+      color: #e50914; font-size: 20px; font-weight: 700;
+      animation: nudge 1.6s ease-in-out infinite;
+    }
+    @keyframes nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
 
     .steps { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 14px 16px; margin: 14px 0; }
     .steps h2 { font-size: 15px; margin: 0 0 8px; }
@@ -155,9 +175,6 @@
 
     <!-- 2 → Telegram 频道 -->
     <a id="tgBtn" class="btn btn-blue" href="#" target="_blank" rel="noopener"><span class="ico">📢</span> 加入我们的 Telegram 频道</a>
-
-    <!-- 3 → 赞助链接（你的 CPM / 智能链接） -->
-    <a id="adBtn" class="btn btn-ghost" href="#" target="_blank" rel="noopener sponsored"><span class="ico">🔗</span> 赞助链接（支持本站）</a>
   </div>
 
   <div class="steps">
@@ -214,6 +231,16 @@
       Telegram 频道（Tube Pro）。加入频道即可第一时间收到通知，也可以在频道里留言索取你想要的课程。
     </p>
   </div>
+
+  <!-- 页面底部的小型赞助链接。如实标注，不使用诱导性文案：
+       假的 "18+" 标注等于说谎（本站没有 18+ 内容），
+       而向爬虫隐藏链接就是 cloaking —— 这两者都会最快导致
+       收入被冻结、域名被拉黑。 -->
+  <a id="adBtn" class="sponsor-strip" href="#" target="_blank" rel="noopener sponsored">
+    <span class="ad-badge">AD</span>
+    <span class="sponsor-text">赞助链接 — 免费支持本站的方式</span>
+    <span class="ad-arrow">›</span>
+  </a>
 
   <footer>
     © <span id="yr"></span> USA Video Course Free · 本页面可能包含赞助链接与广告

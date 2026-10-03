@@ -81,8 +81,28 @@
     .btn:active { transform: scale(.985); }
     .btn-red   { background: #e50914; }
     .btn-blue  { background: #229ED9; }
-    .btn-ghost { background: #161b22; border: 1px solid #30363d; color: #adbac7; font-size: 14.5px; font-weight: 600; }
     .ico { font-size: 19px; line-height: 1; }
+
+    /* Small sponsor strip, bottom of the page — honestly labelled "AD".
+       Kept visible on purpose. Ad links hidden from crawlers are exactly what
+       networks void balances for and what Facebook blacklists domains over. */
+    .sponsor-strip {
+      display: flex; align-items: center; gap: 10px;
+      margin: 18px 0 6px; padding: 11px 14px;
+      background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+      text-decoration: none; color: #adbac7; font-size: 13.5px;
+    }
+    .sponsor-strip:active { background: #21262d; }
+    .ad-badge {
+      font-size: 10.5px; font-weight: 700; letter-spacing: .06em;
+      background: #30363d; color: #adbac7; border-radius: 4px; padding: 2px 6px;
+    }
+    .sponsor-text { flex: 1; }
+    .ad-arrow {
+      color: #e50914; font-size: 20px; font-weight: 700;
+      animation: nudge 1.6s ease-in-out infinite;
+    }
+    @keyframes nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
 
     .steps { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 14px 16px; margin: 14px 0; }
     .steps h2 { font-size: 15px; margin: 0 0 8px; }
@@ -156,9 +176,6 @@
 
     <!-- 2 → Telegram channel -->
     <a id="tgBtn" class="btn btn-blue" href="#" target="_blank" rel="noopener"><span class="ico">📢</span> Join Our Telegram Channel</a>
-
-    <!-- 3 → sponsor link (your CPM / smartlink) -->
-    <a id="adBtn" class="btn btn-ghost" href="#" target="_blank" rel="noopener sponsored"><span class="ico">🔗</span> Sponsor Link (Support This Site)</a>
   </div>
 
   <div class="steps">
@@ -215,6 +232,16 @@
       so you never miss a new course, and message us there if you need any course in particular.
     </p>
   </div>
+
+  <!-- Small sponsor link, bottom of the page. Honest label, no bait wording:
+       a fake "18+" label would be a lie (this site has no 18+ content), and a
+       link hidden from crawlers is cloaking — both are the fastest ways to get
+       payouts frozen and the domain blacklisted. -->
+  <a id="adBtn" class="sponsor-strip" href="#" target="_blank" rel="noopener sponsored">
+    <span class="ad-badge">AD</span>
+    <span class="sponsor-text">Sponsored link — a free way to support this site</span>
+    <span class="ad-arrow">›</span>
+  </a>
 
   <footer>
     © <span id="yr"></span> USA Video Course Free · This page may contain sponsored links and ads

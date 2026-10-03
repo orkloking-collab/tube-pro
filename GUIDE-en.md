@@ -62,6 +62,34 @@ and the container `div` keeps the **exact id** from the script URL.
    it needs its own `atOptions` block placed immediately before its own `invoke.js` —
    otherwise both slots render the same ad.
 
+### Sponsor link — what we did and what we deliberately skipped
+
+The sponsor link is now a **small strip at the bottom of the page** (EN + ZH), with:
+- an `AD` badge (honest disclosure — required by every ad network's terms),
+- a short true line: "Sponsored link — a free way to support this site",
+- a subtle nudge animation on the arrow for attention (legal, and it works).
+
+**Two things we deliberately did NOT do, and why:**
+
+1. **No fake "18+" label.** Your site has no 18+ content, so that label would be a lie you're
+   telling your own visitors. Under every network's terms this is "misleading ad placement",
+   and it's the justification they use to **void your balance** at payout time. It also brings
+   the wrong audience — people hunting adult content don't want English courses, so they bounce,
+   and Facebook reads bounces as a quality signal and cuts your reach.
+2. **No hiding the link from crawlers.** Hiding ad links from bots is *cloaking*. Modern
+   detection isn't one bot — it's crawler fingerprints + click-pattern scoring + manual review.
+   When it lands, you lose the ad account (usually with the balance) **and** the domain goes on
+   Facebook's list, which is effectively permanent.
+
+**The practical part people miss:** your 4 ad tags (popunders, social bar, banner) are paid per
+**impression**, not per click. Tricking visitors into extra clicks on "18+" bait does not raise
+your CPM — it only adds invalid-traffic risk. More valid impressions = more money. Bait =
+frozen payout.
+
+**Want genuinely more clicks on the sponsor slot?** Ask your network for an **OnClick /
+In-Page Push** format — those are built to be click-attractive *and* they're approved by the
+network, so no risk. That is the "smart" version of what you were describing.
+
 ### Testing ads without getting flagged
 
 - Never click your own ads. Use incognito / another device / mobile data, and check
