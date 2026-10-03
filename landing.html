@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       ফেসবুক → এই পেজ → মুভি সাইট + টেলিগ্রাম  (হাব পেজ)
+       ───────────────────────────────────────────────────────────────
+       বদলাতে হবে মাত্র ৩টা লাইন (নিচে স্ক্রিপ্টে):
+         SITE_URL   → আপনার মুভি ওয়েবসাইটের লিংক
+         TELEGRAM   → আপনার টেলিগ্রাম চ্যানেলের লিংক
+         AD_LINK    → আপনার CPM/smartlink (স্পন্সর বাটন)
+
+       পোল এমবেড করতে: নিচে <div id="pollBox"> অংশটা দেখুন।
+       অ্যাড বসাতে:      <!-- AD SLOT --> দুটো জায়গা দেখুন।
+       ═══════════════════════════════════════════════════════════════ -->
+
+  <!-- ⚠️ ফেসবুক এই ৩টা পড়ে প্রিভিউ বানায় — পোস্টের লেখার সাথে মিল রাখুন -->
+  <title>ভিডিও দেখুন ও ডাউনলোড করুন | আপনার সাইট</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="এখানে ভিডিওর আসল টাইটেল — পোস্টের সাথে মিল রাখুন">
+  <meta property="og:description" content="এখানে ১-২ লাইনের আসল বর্ণনা। ফেসবুক পোস্টে যা লিখেছেন তার সাথে হুবহু মিল রাখুন।">
+  <meta property="og:image" content="https://yourdomain.com/thumbnail.jpg">
+  <meta property="og:url" content="https://yourdomain.com/">
+
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      margin: 0; padding: 0; background: #0d1117; color: #e6edf3;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6;
+    }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 14px; }
+
+    header { display: flex; align-items: center; gap: 10px; padding: 10px 0 14px; border-bottom: 1px solid #21262d; }
+    .logo { width: 34px; height: 34px; border-radius: 8px; background: #e50914; display: grid; place-items: center; font-weight: 700; }
+    header b { font-size: 16px; }
+
+    .thumb { width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; border: 1px solid #21262d; background: #000; margin: 14px 0 12px; position: relative; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .thumb .play {
+      position: absolute; inset: 0; display: grid; place-items: center;
+      background: rgba(0,0,0,.35); font-size: 42px; color: #fff;
+    }
+
+    h1 { font-size: 19px; margin: 0 0 6px; }
+    .meta { color: #8b949e; font-size: 13px; margin-bottom: 14px; }
+
+    .stack { display: grid; gap: 10px; margin: 14px 0; }
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; padding: 15px; border: 0; border-radius: 10px;
+      font-size: 16px; font-weight: 700; text-decoration: none; cursor: pointer;
+      color: #fff; transition: transform .08s;
+    }
+    .btn:active { transform: scale(.985); }
+    .btn-red   { background: #e50914; }
+    .btn-blue  { background: #229ED9; }   /* Telegram brand color */
+    .btn-ghost { background: #161b22; border: 1px solid #30363d; color: #adbac7; font-size: 14.5px; font-weight: 600; }
+    .ico { font-size: 19px; line-height: 1; }
+
+    .steps { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 14px 16px; margin: 14px 0; }
+    .steps h2 { font-size: 15px; margin: 0 0 8px; }
+    .steps ol { margin: 0; padding-left: 20px; color: #adbac7; font-size: 14px; }
+    .steps li { margin: 4px 0; }
+
+    .adslot {
+      min-height: 62px; margin: 14px 0; display: grid; place-items: center;
+      color: #30363d; font-size: 12px; border: 1px dashed #21262d; border-radius: 10px;
+    }
+
+    .desc { color: #adbac7; font-size: 14.5px; margin-top: 16px; }
+    .desc h2 { font-size: 16px; color: #e6edf3; margin: 16px 0 6px; }
+
+    #pollBox { display: none; margin: 14px 0; }   /* পোল এমবেড করলে স্ক্রিপ্ট এটা দেখাবে */
+
+    footer { color: #6e7681; font-size: 12px; text-align: center; padding: 18px 0 34px; border-top: 1px solid #21262d; margin-top: 20px; }
+    footer a { color: #6e7681; }
+  </style>
+
+  <!-- AD SLOT 1 : Popunder / Social Bar / In-Page Push কোড এখানে বসান -->
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">🎬</div>
+    <b>আপনার সাইটের নাম</b>
+  </header>
+
+  <div class="thumb">
+    <!-- থাম্বনেইল: আপনার ছবির লিংক দিন, নাহলে এই ইমেজ ট্যাগটা মুছে দিন -->
+    <img src="https://yourdomain.com/thumbnail.jpg" alt="ভিডিও">
+    <div class="play">▶</div>
+  </div>
+
+  <h1>এখানে ভিডিওর আসল টাইটেল</h1>
+  <div class="meta">প্রকাশিত: আজ · ক্যাটাগরি: মুভি</div>
+
+  <div class="stack">
+    <!-- ১ নম্বর বাটন → আপনার মুভি ওয়েবসাইট -->
+    <a id="siteBtn" class="btn btn-red" href="#"><span class="ico">🎬</span> এখনই দেখুন / ডাউনলোড করুন</a>
+
+    <!-- ২ নম্বর বাটন → টেলিগ্রাম চ্যানেল -->
+    <a id="tgBtn" class="btn btn-blue" href="#" target="_blank" rel="noopener"><span class="ico">📢</span> টেলিগ্রামে জয়েন করুন</a>
+
+    <!-- ৩ নম্বর বাটন → স্পন্সর লিংক (আপনার CPM/smartlink) -->
+    <a id="adBtn" class="btn btn-ghost" href="#" target="_blank" rel="noopener sponsored"><span class="ico">🔗</span> স্পন্সর লিংক (সাইট সাপোর্ট করুন)</a>
+  </div>
+
+  <div class="steps">
+    <h2>কীভাবে পাবেন</h2>
+    <ol>
+      <li>টেলিগ্রামে জয়েন করুন — নতুন ভিডিও সবার আগে সেখানে পাবেন</li>
+      <li>উপরের লাল বাটনে ক্লিক করে ভিডিও দেখুন</li>
+      <li>কিছু না পেলে টেলিগ্রামে মেসেজ দিন, সাথে সাথে দিয়ে দেবো</li>
+    </ol>
+  </div>
+
+  <!-- AD SLOT 2 : Banner / Native Banner কোড এখানে বসান -->
+  <div class="adslot">ব্যানার অ্যাডের জায়গা</div>
+
+  <!-- টেলিগ্রাম পোল/পোস্ট এমবেড: নিচের id="pollBox" এর ভেতরের কমেন্ট খুলে
+       আপনার চ্যানেলের পোস্ট নাম্বার বসান (যেমন: yourchannel/12) -->
+  <div id="pollBox">
+    <!--
+    <script async src="https://telegram.org/js/telegram-widget.js?22"
+            data-telegram-post="yourchannel/12"
+            data-width="100%"
+            data-theme="dark"></script>
+    -->
+  </div>
+
+  <div class="desc">
+    <h2>বর্ণনা</h2>
+    <p>
+      এখানে ১০০-৩০০ শব্দের আসল বর্ণনা লিখুন — কনটেন্ট কী, কোয়ালিটি কেমন, ভাষা কী।
+      ফেসবুকের বট এই লেখাটা পড়ে বুঝে নেয় পেজে সত্যিকারের কনটেন্ট আছে; খালি "Loading…"
+      পেজ থাকলে স্প্যাম ফ্ল্যাগ আসে।
+    </p>
+    <p>
+      ফেসবুকের পোস্টে যে লেখা দিয়েছেন, এই বর্ণনার সাথে মিল রাখুন।
+    </p>
+  </div>
+
+  <footer>
+    © <span id="yr"></span> আপনার সাইট · এই পেজে স্পন্সর ও বিজ্ঞাপন থাকতে পারে
+  </footer>
+</div>
+
+<script>
+  (function () {
+    "use strict";
+
+    /* ═══════ শুধু এই ৩ লাইন বদলাবেন ═══════ */
+    var SITE_URL = "https://your-movie-site.com";              // আপনার মুভি ওয়েবসাইট
+    var TELEGRAM = "https://t.me/yourchannel";                 // আপনার টেলিগ্রাম চ্যানেল
+    var AD_LINK  = "https://www.profitableratecpmnetwork.com/a3dhs8jh?key=efc1566522d6b3afe8f44808f822a7f9";
+    /* ═══════════════════════════════════════ */
+
+    document.getElementById("yr").textContent = new Date().getFullYear();
+    document.getElementById("siteBtn").href = SITE_URL;   // একই ট্যাবে খুলবে (স্বাভাবিক ব্রাউজিং)
+    document.getElementById("tgBtn").href = TELEGRAM;     // নতুন ট্যাবে
+    document.getElementById("adBtn").href = AD_LINK;      // নতুন ট্যাবে
+
+    // পোলে ভোট দেওয়ার জন্য কাউকে জোর করবেন না — ফেক বাটন/জোর করে ক্লিক
+    // করানো অ্যাড নেটওয়ার্কের "invalid traffic" ফ্ল্যাগ আনে, অ্যাকাউন্ট ব্যান আসে।
+    // আসল বাটন, আসল ইউজার ক্লিক — এটাই টেকে।
+  })();
+</script>
+
+</body>
+</html>
