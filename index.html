@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07070a">
+
+  <!-- ══════════════════════════════════════════════════════════════
+       TUBE PRO — landing page (ENGLISH).  Design v2.
+       Flow: Facebook post → this page → Telegram / Courses / Sponsor
+       ──────────────────────────────────────────────────────────────
+       Files this page needs (same folder):
+         images/logo.png      images/glam-hero.jpg
+         images/poster-1.jpg  images/poster-2.jpg  images/poster-3.jpg
+         zh.html              (Chinese version)
+       Links are set in the <script> at the bottom of this file.
+       ══════════════════════════════════════════════════════════════ -->
+
+  <title>Tube Pro — Movies, Series &amp; Free Video Courses</title>
+  <meta name="description" content="Tube Pro — movies, series and free video courses. Join our Telegram channel for new drops, 100% free.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tube Pro">
+  <meta property="og:title" content="Tube Pro — Movies, Series &amp; Free Video Courses">
+  <meta property="og:description" content="New drops first on Telegram. Movies, series and 100+ free video courses — no signup.">
+  <!-- ! og:image must be an ABSOLUTE url. Replace with https://yourdomain.com/images/glam-hero.jpg -->
+  <meta property="og:image" content="https://blogger.googleusercontent.com/img/a/AVvXsEgcf-cjZQh-k9Fg-hAgQn6Y3h_LZtNpDwaeZbSUbj8_8LzaWlL4uOl8W-7qt7cV9R6RcAvsmo14VmKN1HLmeAn5FBHnIyzcz3mpnNLl6kl0mpeoKCRVMT5teS_l_6z8j1VlI7C7eE-5akRw7lr8_NYDZNEEE74bEPbBU3tbtOJwZaogW9KG4v4eb_yG49BR=w1200-h630-p-k-no-nu">
+  <meta property="og:url" content="https://yourdomain.com/">   <!-- ! your real domain -->
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
+
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preload" as="image" href="images/glam-hero.jpg">
+  <link rel="alternate" hreflang="en" href="index.html">
+  <link rel="alternate" hreflang="zh-Hans" href="zh.html">
+
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #07070a; color: #eef1f5; min-height: 100vh; overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── dynamic background ─────────────────────────────────────── */
+    .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+    .bg img {
+      width: 100%; height: 100%; object-fit: cover; object-position: 52% 40%; opacity: .80;
+      transform: scale(1.34); animation: kenburns 30s ease-in-out infinite alternate;
+    }
+    @keyframes kenburns {
+      from { transform: scale(1.34) translate3d(0, 0, 0); }
+      to   { transform: scale(1.50) translate3d(-1.8%, -2.2%, 0); }
+    }
+    .bg::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(115% 70% at 50% 6%, rgba(7,7,10,.20), rgba(7,7,10,.92) 72%),
+        linear-gradient(180deg, rgba(7,7,10,.55), rgba(7,7,10,.96));
+    }
+
+    /* ── floating 3D poster cards ───────────────────────────────── */
+    .floaters {
+      position: fixed; inset: 0; z-index: 1; overflow: hidden;
+      perspective: 1000px; pointer-events: none;
+    }
+    .poster {
+      position: absolute; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 26px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.06);
+      will-change: transform;
+    }
+    .poster img { display: block; width: 100%; height: auto; }
+    .p1 { width: 36vmin;  max-width: 250px; left: -7vmin;  top: 12vh;  opacity: .55; animation: drift1 26s ease-in-out infinite; }
+    .p2 { width: 42vmin;  max-width: 290px; right: -9vmin; top: 34vh;  opacity: .60; animation: drift2 33s ease-in-out infinite; }
+    .p3 { width: 32vmin;  max-width: 220px; left: 10vw;    bottom: -7vh; opacity: .34; animation: drift3 39s ease-in-out infinite; }
+    @keyframes drift1 {
+      0%,100% { transform: rotate3d(1, 1, 0, 13deg)  translate3d(0, 0, 0); }
+      50%     { transform: rotate3d(1, 1, 0, 7deg)   translate3d(2vw, -3.5vh, 45px); }
+    }
+    @keyframes drift2 {
+      0%,100% { transform: rotate3d(1, -1, 0, -11deg) translate3d(0, 0, 0); }
+      50%     { transform: rotate3d(1, -1, 0, -4deg)  translate3d(-2.4vw, 3vh, 60px); }
+    }
+    @keyframes drift3 {
+      0%,100% { transform: rotate3d(1, 0.5, 0, 9deg)  translate3d(0, 0, 0) scale(1); }
+      50%     { transform: rotate3d(1, 0.5, 0, 3deg)  translate3d(3vw, -2vh, 20px) scale(1.05); }
+    }
+    @media (min-width: 820px) {
+      .p1 { left: 3vw; }  .p2 { right: 3vw; }  .p3 { left: 22vw; opacity: .28; }
+    }
+    @media (max-width: 560px) {
+      .p3 { display: none; }          /* keep phones clean */
+      .silk img { width: 88vmin; right: -22vw; opacity: .26; }
+      .bg img { transform: scale(1.44); }
+    }
+
+    /* ── flowing red silk layer ─────────────────────────────────── */
+    .silk { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+    .silk img {
+      position: absolute; top: -12vh; right: -14vw; width: 74vmin; max-width: 520px; height: auto;
+      opacity: .34; filter: saturate(1.06);
+      animation: silkdrift 24s ease-in-out infinite;
+    }
+    @keyframes silkdrift {
+      0%,100% { transform: translate3d(0, 0, 0) rotate(7deg) scale(1);     opacity: .30; }
+      50%     { transform: translate3d(-5vw, 6vh, 0) rotate(2deg) scale(1.07); opacity: .46; }
+    }
+
+    /* ── light sweep + particles ────────────────────────────────── */
+    .sweep { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+    .sweep::before {
+      content: ''; position: absolute; top: -50%; left: -70%; width: 55%; height: 200%;
+      background: linear-gradient(75deg, transparent, rgba(255,70,95,.13), transparent);
+      animation: sweep 10s linear infinite;
+    }
+    @keyframes sweep { 0% { transform: translateX(-30vw) rotate(12deg); } 100% { transform: translateX(170vw) rotate(12deg); } }
+
+    .sparks { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+    .spark {
+      position: absolute; bottom: -6vh; width: 5px; height: 5px; border-radius: 50%;
+      background: #ff5a6e; box-shadow: 0 0 14px 4px rgba(255,70,90,.5); opacity: 0;
+      animation: rise 13s linear infinite;
+    }
+    .spark:nth-child(1) { left: 9%;  animation-duration: 12s; animation-delay: 0s; }
+    .spark:nth-child(2) { left: 22%; animation-duration: 16s; animation-delay: 2.5s; }
+    .spark:nth-child(3) { left: 37%; animation-duration: 11s; animation-delay: 5s; }
+    .spark:nth-child(4) { left: 52%; animation-duration: 15s; animation-delay: 1.4s; }
+    .spark:nth-child(5) { left: 66%; animation-duration: 13s; animation-delay: 4.2s; }
+    .spark:nth-child(6) { left: 79%; animation-duration: 18s; animation-delay: 6.5s; }
+    .spark:nth-child(7) { left: 91%; animation-duration: 14s; animation-delay: 3.2s; }
+    @keyframes rise {
+      0%   { transform: translateY(0) scale(.5);      opacity: 0; }
+      15%  { opacity: .65; }
+      85%  { opacity: .35; }
+      100% { transform: translateY(-92vh) scale(1.15); opacity: 0; }
+    }
+
+    /* ── content ────────────────────────────────────────────────── */
+    .wrap {
+      position: relative; z-index: 2; max-width: 620px; margin: 0 auto;
+      padding: 16px 18px 34px; min-height: 100vh; display: flex; flex-direction: column;
+    }
+    .topbar { display: flex; align-items: center; gap: 11px; padding-top: 4px; }
+    .brandlogo {
+      width: 42px; height: 42px; border-radius: 13px; display: block;
+      box-shadow: 0 8px 22px rgba(229,9,20,.38);
+    }
+    .brandname { font-size: 17.5px; font-weight: 800; letter-spacing: .2px; }
+    .brandname i { font-style: normal; background: linear-gradient(180deg,#fff,#ff6b7a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lang { margin-left: auto; display: flex; gap: 6px; }
+    .lang a {
+      font-size: 12.5px; padding: 5px 11px; border-radius: 20px; text-decoration: none;
+      color: #98a2b0; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04);
+    }
+    .lang a.on { background: #e50914; border-color: #e50914; color: #fff; font-weight: 700; }
+
+    .hero { margin: auto 0; text-align: center; padding: 30px 0 22px; }
+    .hero h1 {
+      margin: 0 0 8px; font-size: clamp(40px, 13.5vw, 68px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.02;
+      background: linear-gradient(180deg, #ffffff 30%, #ffb3bb 68%, #ff4d5e);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      filter: drop-shadow(0 8px 26px rgba(229,9,20,.38));
+    }
+    .tag {
+      margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: #ffd0d6;
+    }
+    .sub { margin: 0 auto 28px; max-width: 30em; color: #b6bfca; font-size: 15px; }
+
+    .cta { display: grid; gap: 12px; }
+    .btn {
+      position: relative; display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 18px; border: 0; border-radius: 16px; font-size: 16.5px; font-weight: 800;
+      text-decoration: none; color: #fff; cursor: pointer; overflow: hidden;
+      transition: transform .12s ease, box-shadow .25s ease;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn svg { width: 22px; height: 22px; flex: 0 0 auto; }
+    .btn-tg {
+      background: linear-gradient(135deg, #2AABEE, #229ED9 55%, #1a7fc6);
+      box-shadow: 0 14px 34px rgba(34,158,217,.40), inset 0 1px 0 rgba(255,255,255,.28);
+    }
+    .btn-tg::after {
+      content: ''; position: absolute; top: 0; left: -140%; width: 55%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,.38), transparent);
+      animation: shine 3.6s ease-in-out infinite;
+    }
+    @keyframes shine { 0% { left: -140%; } 60%, 100% { left: 165%; } }
+    .btn-2 {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.17);
+      backdrop-filter: blur(7px); font-weight: 700; font-size: 15.5px; color: #e7ecf3;
+    }
+
+    /* ── 18+ sponsor button ─────────────────────────────────────── */
+    .adzone { margin-top: 26px; text-align: center; }
+    .ad18 {
+      position: relative; display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 15px 18px; border-radius: 16px; text-decoration: none; color: #fff;
+      font-size: 16px; font-weight: 900; letter-spacing: .2px;
+      background: linear-gradient(135deg, #ff2d55, #ff5e3a 52%, #ff2d55);
+      box-shadow: 0 14px 36px rgba(255,45,85,.38), inset 0 1px 0 rgba(255,255,255,.3);
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+    .ad18:active { transform: scale(.98); }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 14px 36px rgba(255,45,85,.34), inset 0 1px 0 rgba(255,255,255,.3); }
+      50%     { box-shadow: 0 18px 48px rgba(255,45,85,.62), inset 0 1px 0 rgba(255,255,255,.3); }
+    }
+    .badge18 {
+      display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(0,0,0,.34); border: 1.5px solid rgba(255,255,255,.55);
+      font-size: 13px; font-weight: 900; letter-spacing: -.3px;
+    }
+    .adcheat {
+      position: absolute; top: -8px; right: 12px; font-size: 9.5px; font-weight: 800; letter-spacing: .1em;
+      background: #0f1020; color: #ccd3dd; border: 1px solid rgba(255,255,255,.2);
+      border-radius: 6px; padding: 2px 6px; text-transform: uppercase;
+    }
+    .adnote { margin: 11px 0 0; font-size: 11.5px; color: #8b93a1; line-height: 1.55; }
+
+    /* ── ad containers ──────────────────────────────────────────── */
+    .ad-native { margin: 22px 0 0; text-align: center; }
+    .ad-wide {
+      margin: 20px 0 4px; display: flex; justify-content: center;
+      overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
+    }
+    .ad-wide > * { flex: 0 0 auto; }
+
+    footer {
+      margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08);
+      color: #6f7784; font-size: 11.5px; text-align: center;
+    }
+    #pollBox { display: none; margin-top: 20px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+    }
+  </style>
+
+  <!-- ═══════════ AD SLOT 1 — Popunder / OnClick ═══════════
+       A browser allows only ONE automatic popup per page, so the second tag
+       mostly stays idle. If earnings stall, move one of them to another page. -->
+  <script src="https://pl31640723.profitableratecpmnetwork.com/5f/3d/b9/5f3db97336f2761b8ec5e1db50593aa0.js"></script>
+  <script src="https://pl31640724.profitableratecpmnetwork.com/16/11/f9/1611f949ca7045a0ec2a0ad56d36ede1.js"></script>
+</head>
+<body>
+
+  <!-- dynamic background layers -->
+  <div class="bg"><img src="images/glam-hero.jpg" alt=""></div>
+  <div class="silk" aria-hidden="true"><img src="images/silk-hero.jpg" alt=""></div>
+  <div class="sweep"></div>
+  <div class="sparks">
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span><span class="spark"></span><span class="spark"></span>
+    <span class="spark"></span>
+  </div>
+
+  <!-- floating 3D posters (pure decoration, click-through) -->
+  <div class="floaters" aria-hidden="true">
+    <div class="poster p1"><img src="images/poster-1.jpg" alt=""></div>
+    <div class="poster p2"><img src="images/poster-2.jpg" alt=""></div>
+    <div class="poster p3"><img src="images/poster-3.jpg" alt=""></div>
+  </div>
+
+  <main class="wrap">
+
+    <div class="topbar">
+      <img class="brandlogo" src="images/logo.png" alt="Tube Pro logo">
+      <div class="brandname">Tube<i>Pro</i></div>
+      <nav class="lang">
+        <a class="on" href="index.html">EN</a>
+        <a href="zh.html">中文</a>
+      </nav>
+    </div>
+
+    <section class="hero">
+      <h1>Tube Pro</h1>
+      <p class="tag">Movies &middot; Series &middot; Video Courses</p>
+      <p class="sub">Join the community — new drops land on Telegram first. Free access, no signup, no payment.</p>
+
+      <div class="cta">
+        <a id="tgBtn" class="btn btn-tg" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+          Join Telegram Channel
+        </a>
+
+        <a id="siteBtn" class="btn btn-2" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5.14v13.72c0 .8.87 1.3 1.56.9l11.2-6.86a1.05 1.05 0 0 0 0-1.8L9.56 4.24A1.05 1.05 0 0 0 8 5.14z"/>
+          </svg>
+          Browse Free Courses
+        </a>
+      </div>
+    </section>
+
+    <!-- ── 18+ sponsor button ──────────────────────────────────────
+         Honest label: it says AD, and it says the destination is for 18+.
+         Post the "?fb=1" version on Facebook to hide this block for that
+         traffic (see GUIDE-en.md, section "18+ button").  -->
+    <section class="adzone" id="adzone">
+      <a id="adBtn" class="ad18" href="#" target="_blank" rel="noopener sponsored">
+        <span class="adcheat">AD</span>
+        <span class="badge18">18+</span>
+        Sponsored Exclusive &mdash; Enter
+      </a>
+      <p class="adnote">Sponsored advertising · Adults 18 and over only · Contains third-party offers</p>
+    </section>
+
+    <!-- ═══════════ AD SLOT 2 — Social Bar / In-Page Push ═══════════
+         The script must stay BEFORE its container div, and the id must match
+         the script URL exactly. -->
+    <script async="async" data-cfasync="false" src="https://pl31640725.profitableratecpmnetwork.com/eb6b00d57bb81460f782acfe023302c1/invoke.js"></script>
+    <div class="ad-native" id="container-eb6b00d57bb81460f782acfe023302c1"></div>
+
+    <!-- ═══════════ AD SLOT 3 — 728x90 banner ═══════════
+         atOptions is global, so it must sit immediately above its own invoke.js. -->
+    <div class="ad-wide">
+      <script>
+        atOptions = {
+          'key' : 'bcecb97217d1151e7a4a2b787376b344',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highrevenueformat.com/bcecb97217d1151e7a4a2b787376b344/invoke.js"></script>
+    </div>
+
+    <!-- Optional: embed a Telegram post / poll (public channel only).
+         Uncomment and paste your post number, e.g. duzshopi/3. -->
+    <div id="pollBox">
+      <!--
+      <script async src="https://telegram.org/js/telegram-widget.js?22"
+              data-telegram-post="duzshopi/3"
+              data-width="100%"
+              data-theme="dark"></script>
+      -->
+    </div>
+
+    <footer>
+      &copy; <span id="yr"></span> Tube Pro · This page may contain sponsored links and ads
+    </footer>
+  </main>
+
+<script>
+  (function () {
+    "use strict";
+
+    /* ═══════ YOUR LINKS — edit here ═══════ */
+    var TELEGRAM = "https://t.me/duzshopi";
+    var SITE_URL = "https://usavideocoursefree.blogspot.com/";
+    var AD_LINK  = "https://www.profitableratecpmnetwork.com/a3dhs8jh?key=efc1566522d6b3afe8f44808f822a7f9";
+    /* ═════════════════════════════════════ */
+
+    document.getElementById("yr").textContent = new Date().getFullYear();
+    document.getElementById("tgBtn").href = TELEGRAM;
+    document.getElementById("siteBtn").href = SITE_URL;
+    document.getElementById("adBtn").href = AD_LINK;
+
+    // Hide the 18+ block for Facebook traffic: post the link with ?fb=1.
+    // The crawler and your Facebook visitors then see the same clean page,
+    // which keeps the domain out of "adult content" classification.
+    // The full page (with the 18+ button) stays live for every other traffic source.
+    if (/[?&]fb=1/.test(location.search)) {
+      document.getElementById("adzone").style.display = "none";
+    }
+
+    // ! Never fake or auto-click ads — networks void balances for invalid traffic.
+  })();
+</script>
+
+</body>
+</html>
