@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KOTODAMA 言霊: Episode 1 "The Boy Who Couldn't Write"</title>
+<style>
+  @font-face { font-family: 'Dela Gothic One'; src: url(../assets/fonts/DelaGothicOne-Regular.ttf); }
+  @font-face { font-family: 'Yuji Boku'; src: url(../assets/fonts/YujiBoku-Regular.ttf); }
+  :root { --bg: #0d0b14; --panel: #17131f; --line: #2a2336; --red: #e0384a; --gold: #ffd23a; --txt: #ece8f4; --dim: #9a93aa; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: radial-gradient(1200px 600px at 20% -10%, #2a1020 0%, var(--bg) 60%); color: var(--txt); font: 15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; min-height: 100vh; }
+  header { display: flex; align-items: baseline; gap: 16px; padding: 18px 24px 8px; flex-wrap: wrap; }
+  header h1 { margin: 0; font: 34px 'Dela Gothic One', sans-serif; letter-spacing: 1px; }
+  header h1 .jp { font-family: 'Yuji Boku', serif; color: var(--red); margin-left: 8px; }
+  header .ep { color: var(--gold); font-weight: 700; }
+  header .ep .jp { font-family: 'Yuji Boku', serif; color: var(--txt); margin-left: 6px; }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; padding: 8px 24px 24px; }
+  @media (max-width: 1000px) { main { grid-template-columns: 1fr; } }
+  .stage { background: #000; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; position: relative; aspect-ratio: 16/9; }
+  .stage video, .stage canvas { width: 100%; height: 100%; display: block; background: #000; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+  .tab { background: var(--panel); color: var(--dim); border: 1px solid var(--line); padding: 7px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+  .tab.on { color: var(--txt); border-color: var(--red); box-shadow: inset 0 -2px 0 var(--red); }
+  .controls { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+  .controls button { background: var(--red); border: 0; color: #fff; font-weight: 700; padding: 7px 14px; border-radius: 8px; cursor: pointer; }
+  .controls input[type=range] { flex: 1; accent-color: var(--red); }
+  .controls .time { font-variant-numeric: tabular-nums; color: var(--dim); min-width: 110px; text-align: right; }
+  .note { color: var(--dim); font-size: 13px; margin-top: 8px; }
+  .missing { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; text-align: center; padding: 24px; color: var(--dim); }
+  .missing code { color: var(--gold); }
+  aside { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .card h3 { margin: 0 0 8px; font: 15px 'Dela Gothic One', sans-serif; color: var(--gold); letter-spacing: .5px; }
+  .chap { display: flex; justify-content: space-between; padding: 5px 8px; border-radius: 6px; cursor: pointer; }
+  .chap:hover, .line:hover { background: #241d30; }
+  .chap.on { background: #2c1622; color: #fff; }
+  .chap span:last-child, .line .t { color: var(--dim); font-variant-numeric: tabular-nums; }
+  #transcript { max-height: 52vh; overflow: auto; scroll-behavior: smooth; }
+  .line { padding: 5px 8px; border-radius: 6px; cursor: pointer; display: grid; grid-template-columns: 44px 1fr; gap: 6px; }
+  .line.on { background: #2c1622; }
+  .line .who { font-weight: 700; font-size: 12px; letter-spacing: .5px; text-transform: uppercase; }
+  .line.narr .txt { color: #ffe9b0; font-style: italic; }
+  .meta { color: var(--dim); font-size: 13px; }
+  .meta b { color: var(--txt); }
+  a { color: var(--gold); }
+</style>
+</head>
+<body>
+<header>
+  <h1>KOTODAMA<span class="jp">言霊</span></h1>
+  <div class="ep">Episode 1 · "The Boy Who Couldn't Write"<span class="jp">書けない少年</span></div>
+</header>
+<main>
+  <section>
+    <div class="tabs">
+      <button class="tab on" data-mode="video">▶ Watch (MP4)</button>
+      <button class="tab" data-mode="live">⚡ Live engine (rendered in your browser)</button>
+    </div>
+    <div class="stage">
+      <video id="video" controls preload="metadata"><source src="../release/KOTODAMA_EP01_720p.mp4" type="video/mp4"><source src="../build/ep01_master.mp4" type="video/mp4"></video>
+      <canvas id="live" width="1280" height="720" style="display:none"></canvas>
+      <div class="missing" id="missing">The MP4 hasn't been rendered yet.<br>Run <code>npm run audio &amp;&amp; npm run render &amp;&amp; npm run deliver</code>, or use the ⚡ Live engine tab.</div>
+    </div>
+    <div class="controls" id="liveControls" style="display:none">
+      <button id="playBtn">Play</button>
+      <input id="seek" type="range" min="0" max="1000" value="0">
+      <span class="time" id="time">0:00 / 0:00</span>
+    </div>
+    <div class="note" id="note">Every frame, character, effect and note of music is generated by code (<code>src/engine</code> + <code>src/episode01</code>). The live tab runs the exact same modules on an HTML canvas.</div>
+  </section>
+  <aside>
+    <div class="card"><h3>CHAPTERS</h3><div id="chapters"></div></div>
+    <div class="card"><h3>TRANSCRIPT</h3><div id="transcript"></div></div>
+    <div class="card meta" id="meta"></div>
+  </aside>
+</main>
+<script type="module">
+const $ = (id) => document.getElementById(id);
+const fmt = (t) => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
+const data = await (await fetch('episode.json')).json();
+const video = $('video'), live = $('live');
+let mode = 'video', E = null, renderFrame = null, audio = null, playing = false, clock0 = 0, liveT = 0;
+
+$('meta').innerHTML = `Runtime <b>${fmt(data.duration)}</b> · ${data.subs.length} lines · ${data.chapters.length} segments<br>
+  <a href="../story/EP01_SCRIPT.md" target="_blank">Screenplay</a> · <a href="../story/SERIES_BIBLE.md" target="_blank">Series bible</a> · <a href="../release/ep01.srt" target="_blank">Subtitles (.srt)</a>`;
+$('chapters').innerHTML = data.chapters.map((c, i) => `<div class="chap" data-t="${c.t}"><span>${c.name}</span><span>${fmt(c.t)}</span></div>`).join('');
+$('transcript').innerHTML = data.subs.map((s) => `<div class="line ${s.style === 'narr' ? 'narr' : ''}" data-t="${s.t0}"><span class="t">${fmt(s.t0)}</span><span><span class="who" style="color:${s.color || '#ffe9b0'}">${s.who || 'Narrator'}</span><br><span class="txt">${s.text.replace(/</g, '&lt;')}</span></span></div>`).join('');
+const lines = [...document.querySelectorAll('.line')], chaps = [...document.querySelectorAll('.chap')];
+for (const el of [...lines, ...chaps]) el.onclick = () => seek(+el.dataset.t);
+
+video.querySelector('source:last-child').addEventListener('error', () => { $('missing').style.display = 'flex'; });
+function now() { return mode === 'video' ? video.currentTime : liveT; }
+function seek(t) {
+  if (mode === 'video') { video.currentTime = t; video.play().catch(() => {}); }
+  else { liveT = t; if (audio) audio.currentTime = t; clock0 = performance.now() / 1000 - t; }
+}
+let lastLine = -1;
+function highlight(t) {
+  let li = -1; for (let i = 0; i < data.subs.length; i++) if (data.subs[i].t0 <= t) li = i; else break;
+  if (li !== lastLine) { lines.forEach((l, i) => l.classList.toggle('on', i === li)); if (li >= 0) lines[li].scrollIntoView({ block: 'nearest' }); lastLine = li; }
+  let ci = 0; data.chapters.forEach((c, i) => { if (c.t <= t) ci = i; }); chaps.forEach((c, i) => c.classList.toggle('on', i === ci));
+}
+setInterval(() => highlight(now()), 250);
+
+// ---------------- live engine
+async function initLive() {
+  if (E) return;
+  $('note').textContent = 'Loading engine, fonts and kanji stroke data...';
+  const { initBrowserEnv } = await import('../src/browser-env.js');
+  await initBrowserEnv('..');
+  ({ renderFrame } = await import('../src/engine/renderer.js'));
+  const { buildEpisode } = await import('../src/episode01/script.js');
+  E = buildEpisode();
+  audio = document.createElement('audio'); audio.preload = 'auto';
+  audio.innerHTML = '<source src="../build/ep01.wav" type="audio/wav"><source src="../release/KOTODAMA_EP01_720p.mp4" type="video/mp4">';
+  audio.querySelector('source:last-child').addEventListener('error', () => { audio = null; });
+  $('note').textContent = 'Live: the same engine modules render every frame on this canvas in real time (sound from the rendered soundtrack).';
+  requestAnimationFrame(tick);
+}
+const lctx = live.getContext('2d');
+function tick() {
+  if (mode === 'live' && E) {
+    if (playing) liveT = audio && !audio.paused ? audio.currentTime : performance.now() / 1000 - clock0;
+    if (liveT >= E.duration) { playing = false; liveT = E.duration - 0.01; }
+    renderFrame(lctx, E, liveT, live.width);
+    $('seek').value = Math.round(liveT / E.duration * 1000);
+    $('time').textContent = `${fmt(liveT)} / ${fmt(E.duration)}`;
+  }
+  requestAnimationFrame(tick);
+}
+$('playBtn').onclick = () => {
+  playing = !playing; $('playBtn').textContent = playing ? 'Pause' : 'Play';
+  clock0 = performance.now() / 1000 - liveT;
+  if (audio) { if (playing) { audio.currentTime = liveT; audio.play().catch(() => {}); } else audio.pause(); }
+};
+$('seek').oninput = (e) => E && seek(e.target.value / 1000 * E.duration);
+for (const b of document.querySelectorAll('.tab')) b.onclick = async () => {
+  document.querySelectorAll('.tab').forEach((x) => x.classList.toggle('on', x === b));
+  const t = now();
+  mode = b.dataset.mode;
+  const isLive = mode === 'live';
+  video.style.display = isLive ? 'none' : 'block'; live.style.display = isLive ? 'block' : 'none';
+  $('liveControls').style.display = isLive ? 'flex' : 'none';
+  $('missing').style.visibility = isLive ? 'hidden' : 'visible';
+  if (isLive) { video.pause(); await initLive(); liveT = t; } else { playing = false; $('playBtn').textContent = 'Play'; if (audio) audio.pause(); video.currentTime = t; }
+};
+</script>
+</body>
+</html>

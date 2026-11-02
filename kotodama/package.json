@@ -1,0 +1,27 @@
+{
+  "name": "kotodama-anime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "KOTODAMA (言霊): The Living Script, an anime episode generated entirely from code.",
+  "scripts": {
+    "timing": "node tools/timing.mjs",
+    "sheet": "node tools/sheet.mjs",
+    "stills": "node tools/stills.mjs",
+    "audio": "node tools/audio.mjs",
+    "render": "node tools/render.mjs",
+    "deliver": "node tools/deliver.mjs",
+    "script": "node tools/export-script.mjs",
+    "serve": "node tools/serve.mjs",
+    "all": "node tools/export-script.mjs && node tools/audio.mjs && node tools/render.mjs && node tools/deliver.mjs"
+  },
+  "dependencies": {
+    "@expo-google-fonts/bangers": "^0.4.1",
+    "@expo-google-fonts/dela-gothic-one": "^0.4.1",
+    "@expo-google-fonts/noto-sans": "^0.4.2",
+    "@expo-google-fonts/yuji-boku": "^0.4.2",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@napi-rs/canvas": "^1.1.0",
+    "hanzi-writer-data": "^2.0.1"
+  }
+}

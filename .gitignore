@@ -1,0 +1,7 @@
+node_modules/
+kotodama/build/
+kotodama/renders/
+kotodama/release/*.wav
+kotodama/tmp/
+*.log
+.DS_Store
