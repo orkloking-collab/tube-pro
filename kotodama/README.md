@@ -5,7 +5,7 @@
 
 In Hinomoto, words written in spirit ink come alive. Kakeru Sumizome has the worst handwriting in his village. His "fire" kanji turns into a frog. But his unreadable scribbles turn out to be **Kami-moji**, the First Script: the only writing the Blank and its cult **Hakushi** cannot erase.
 
-- 🎬 Video: `release/KOTODAMA_EP01_720p.mp4` (+ `release/ep01.srt`, `release/chapters.txt`)
+- 🎬 Video: `release/KOTODAMA_EP01_720p.mp4` (23:26, 720p, 91 MB) + `release/thumbnail.png`, `release/ep01.srt`, `release/chapters.txt`
 - 📜 Screenplay (generated from the code, timestamps match the video): [`story/EP01_SCRIPT.md`](story/EP01_SCRIPT.md)
 - 📖 Series bible (world, magic rules, characters, 12-episode Season 1): [`story/SERIES_BIBLE.md`](story/SERIES_BIBLE.md)
 
